@@ -1,0 +1,194 @@
+:root{
+    --red: rgb(231, 92, 92);
+    --green: rgb(124, 218, 124);
+    --blue: rgb(92, 150, 204);
+    --background: rgb(34, 35, 37);
+    --border: rgb(48, 50, 54);
+}
+@font-face{
+    font-family: "Azeret-Mono";
+    src: url("font/AzeretMono-Light.ttf")
+}
+@font-face{
+    font-family: "Azeret-Mono-Thin";
+    src: url("font/AzeretMono-Thin.ttf")
+}
+
+/* ===== PAGE ===== */
+*{
+    color: white;
+    font-family: "Azeret-Mono";
+    font-size: 1.1em;
+    font-weight: 100;
+}
+
+body{
+    background-image: url("img/TileCircuit.jpg");
+    /* background-image: linear-gradient(130deg, var(--red), var(--blue) 40%, var(--green) 90%); */
+    background-repeat: repeat;
+    /* background-size: 100% 200%; */
+    background-size: 5%;
+    background-position: 1.25% 1.25%;
+    height: 100%;
+    margin: 0 0%;
+}
+
+header{
+    font-size: inherit;
+    text-align: center;
+    border: 10px solid var(--border);
+    box-shadow: #00000094 1px 1px 10px;
+}
+
+header h1{
+    font-size: 2em;
+    margin: 1% 0% 2%;
+}
+
+header h2{
+    font-size: 1em;
+}
+
+span#red{
+    color: var(--red);
+}
+span#green{
+    color: var(--blue);
+}
+span#blue{
+    color: var(--green);
+}
+
+#mainPage{
+    display: flex;
+    flex-flow: column;
+    background: var(--background);
+    flex: 0 1 auto;
+    margin: 0% 10%;
+    padding: 1% 2% 2%;
+    /* height: 100%k */
+    box-shadow: var(--background) 1px 1px 50px 8vw;
+}
+
+/* ===== GRID ===== */
+@keyframes gradientMove{
+    0%   { background-position: 0% 0%;   }
+    50%  { background-position: 0% 100%; }
+    100% { background-position: 0% 0%;   }
+}
+
+
+#gridDisplay{
+    display: grid;
+    margin: 0%;
+    padding: 0% 10%;
+    perspective: 300px; /* Controls FOV */
+    justify-self: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2% 2%;
+}
+
+.gridItem{
+    display: grid; /*Grid items in the main grid have a grid inside them for image and text*/
+    grid-template-columns: 1fr;
+    gap: 2% 4%;
+    margin: 0.5em;
+    padding: 1em;
+    background-image: url("img/TileDark.jpg");
+    background-size: 3em;
+    align-self: stretch;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 10px;
+    transition: transform 0.1s, box-shadow 0.1s, padding 0.1s;
+}
+
+.gridItem:first-child{
+    grid-column: 1 / span 2;
+    grid-template-columns: 1fr 1fr;
+}
+
+.gridItem:hover:before{ /*Gradient border*/
+    content: "";
+    transform-style: flat;
+    display: block;
+    transform: translateZ(-0.1px);
+    animation: gradientMove 15s ease infinite;
+    background-size: 100% 200%;
+    background-image: linear-gradient(130deg, var(--red), var(--blue) 40%, var(--green) 90%);
+    position: absolute;
+    top: -6px;
+    left: -6.5px;
+    height: calc(100% + 12px);
+    width: calc(100% + 13px);
+    border-radius: 14px;
+}
+
+.gridItem:hover{
+    transform-style: preserve-3d;
+    /* border: 3px dashed #29ff7b; */
+    padding: 0.5em;
+    transition: transform 0.1s;
+    transform: translateZ(3px) rotateX(1deg);
+    /* box-shadow: #29ff7b 0px 0px 10px; */
+}
+
+.gridItem img{
+    margin: 2%;
+    display: block;
+    width: 100%;
+}
+
+.gridItem:first-child img{
+    grid-row: 1 / span 2;
+    margin: 2%;
+    border: 2px solid blue;
+    display: block;
+    width: 100%;
+}
+
+.gridItem p{
+    font-family: Consolas;
+    margin: 0 0.5em;
+    text-align: justify;
+    padding: 0;
+    /* display: block; */
+}
+
+.gridItem p#description{
+    color: white;
+    mix-blend-mode: normal;
+    font-family: "Azeret-Mono-Thin";
+    letter-spacing: 0.02em;
+    line-height: 1.3em;
+    font-size: 0.7em;
+}
+
+.gridItem:hover > p:not(#description){
+    color: white;
+    background-blend-mode: screen;
+}
+
+/* ===== PAGE RESIZE ===== */
+@media(max-width: 1400px){
+    body{
+        margin: 0 5%;
+    }
+
+    #gridDisplay{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 800px){
+    *{
+        font-size: 1em;
+    }
+
+    body{
+        margin: 0 1%;
+    }
+
+    #gridDisplay{
+        grid-template-columns: 1fr;
+    }
+}
