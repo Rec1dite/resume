@@ -1,8 +1,9 @@
-export const gallery = {
-    "1": {
-        "title": "asdf",
+export const projects = {
+    "blix": {
+        "title": "Blix",
         "desc": "The quick brown fox jumps over the lazy dog",
-        "thumbnailImg": "https://images.unsplash.com/photo-1617296538902-887900d9b592?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzExMDB8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max&w=300&h=300&auto=format&fit=max"
+        "thumbnailImg": "https://images.unsplash.com/photo-1617296538902-887900d9b592?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzExMDB8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max&w=300&h=300&auto=format&fit=max",
+        "showcase": []
     },
     "2": {
         "title": "asdf",

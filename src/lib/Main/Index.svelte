@@ -1,7 +1,7 @@
 <!-- Index -->
 <table class="index">
     <tr><td> <a href="#about">About me</a>          </td></tr>
-    <tr><td> <a href="#programming">Programming</a> </td></tr>
+    <tr><td> <a href="#projects">Projects</a>       </td></tr>
     <tr><td> <a href="#games">Games</a>             </td></tr>
     <tr><td> <a href="#graphics">Graphics</a>       </td></tr>
     <tr><td> <a href="#contact">Contact</a>         </td></tr>

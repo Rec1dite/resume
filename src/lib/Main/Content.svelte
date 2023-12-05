@@ -1,96 +1,84 @@
-<script>
-  import Gallery from "../Gallery.svelte";
+<script lang="ts">
+    import Socials from "./Socials.svelte";
+    import Gallery from "./Gallery.svelte";
+    import Bio from "./Bio.svelte";
+    import { type CollageItem } from "./Collage.svelte";
+    import Item from "./Item.svelte";
+
+    let galleryItems: CollageItem[] = [
+        {
+            element: "img",
+            props: {
+                src: "https://via.placeholder.com/150",
+                width: "100%",
+                style: "display: inline-block; border-radius: 1em"
+            }
+        },
+        {
+            component: Item,
+            props: {
+                src: "https://via.placeholder.com/150",
+            }
+        }
+    ];
+    galleryItems = [...galleryItems, ...galleryItems, ...galleryItems];
 
 </script>
+
 <section id="about">
     <h1>About me</h1>
-    <h4>My name is Dino Gironi</h4>
-    <p>I'm a Computer Science student with 5+ years of full-stack programming experience.</p>
-    <p>Self-taught developer and 3D graphics artist with pro bono experience in everything from Web Development to Machine Learning to Virtual Reality.</p>
-    <p>I have a wide range of interests and try to expand my skills in as many technologies as possible.</p>
-    <p>This site is intended as a place for me to publish and document some of my projects and endeavours. Happy browsing :)</p>
+    <Bio />
 </section>
 
 <section id="programming">
-    <Gallery />
+    <h1>Projects</h1>
+    <Gallery content={galleryItems} />
 </section>
 
 <section id="programming">
     <h1>Programming</h1>
-    <p>Some of the projects I've worked on recently:</p>
-    <ul class="cluster">
-        <li>
-            <img src="thumbnails/CeeVee.jpg" alt="">
-            <p>CeeVee Graphics Engine</p>
-        </li>
-        <li>
-            <img src="thumbnails/Splinter2.jpg" alt="">
-            <p>Splinter 2D Physics Engine</p>
-        </li>
-        <li>
-            <img class="pixelArt" src="thumbnails/LegoGameBuilder.png" alt="">
-            <p>Lego Game Builder</p>
-        </li>
-        <li>
-            <img src="thumbnails/Hashed.jpg" alt="">
-            <p>Hashed VR Cinematic</p>
-        </li>
-        <li>
-            <img src="thumbnails/TypingTest.jpg" alt="">
-            <p>Typing Test</p>
-        </li>
-    </ul>
+    <img src="thumbnails/CeeVee.jpg" alt="">
+    <p>CeeVee Graphics Engine</p>
+    <img src="thumbnails/Splinter2.jpg" alt="">
+    <p>Splinter 2D Physics Engine</p>
+    <img class="pixelArt" src="thumbnails/LegoGameBuilder.png" alt="">
+    <p>Lego Game Builder</p>
+    <img src="thumbnails/Hashed.jpg" alt="">
+    <p>Hashed VR Cinematic</p>
+    <img src="thumbnails/TypingTest.jpg" alt="">
+    <p>Typing Test</p>
 </section>
 
 <section id="games">
     <h1>Games</h1>
-    <ul class="cluster">
-        <li>
-            <a href="https://slightlyaboveaverage.itch.io/delirium">
-            <img src="thumbnails/Delirium1.png" alt="">
-            <p>Delirium<br/>Endless Shooter</p>
-            </a>
-        </li>
-        <li>
-            <img src="thumbnails/KnockOff.png" alt="">
-            <p>Knock Off!<br/>Multiplayer Platformer</p>
-        </li>
-        <li>
-            <img src="thumbnails/SpellingBee.png" alt="">
-            <p>Spelling Bee Quiz App</p>
-        </li>
-        <li>
-            <img src="thumbnails/ARTSurvival.jpg" alt="">
-            <p>ART: Survival Evolved<br/>Matric VR Art Final</p>
-        </li>
-        <li>
-            <img src="thumbnails/placeholder.jpg" alt="">
-            <p>Space Tower Defense</p>
-        </li>
-    </ul>
+    <a href="https://slightlyaboveaverage.itch.io/delirium">
+    <img src="thumbnails/Delirium1.png" alt="">
+    <p>Delirium<br/>Endless Shooter</p>
+    </a>
+    <img src="thumbnails/KnockOff.png" alt="">
+    <p>Knock Off!<br/>Multiplayer Platformer</p>
+    <img src="thumbnails/SpellingBee.png" alt="">
+    <p>Spelling Bee Quiz App</p>
+    <img src="thumbnails/ARTSurvival.jpg" alt="">
+    <p>ART: Survival Evolved<br/>Matric VR Art Final</p>
+    <img src="thumbnails/placeholder.jpg" alt="">
+    <p>Space Tower Defense</p>
 </section>
 
 <section id="graphics">
     <h1>Graphics</h1>
-    <ul class="cluster">
-        <li>
-            <img src="thumbnails/Posters.png" alt="">
-            <p>Posters</p>
-        </li>
-        <li>
-            <img src="thumbnails/Iconography.jpg" alt="">
-            <p>Iconography</p>
-        </li>
-        <li>
-            <img src="thumbnails/Renders.jpg" alt="">
-            <p>Renders</p>
-        </li>
-    </ul>
+    <img src="thumbnails/Posters.png" alt="">
+    <p>Posters</p>
+    <img src="thumbnails/Iconography.jpg" alt="">
+    <p>Iconography</p>
+    <img src="thumbnails/Renders.jpg" alt="">
+    <p>Renders</p>
 </section>
 
-<section id="contact">
+<section id="contact" >
     <h1>Contact</h1>
-    <p>Email: <b>dino@gims-cc.co.za</b></p>
+    <p>Email: <b>rec1dite@gmail.com</b></p>
+    <Socials />
 </section>
 
 <style>
@@ -102,77 +90,18 @@
         font-family: "Offside";
         font-size: 3.5em;
         font-weight: 300;
+        line-height: 1em;
         margin-bottom: 1em;
         filter: drop-shadow(0px 4px 6px black);
     }
 
     section {
-        /* background-image: url("pattern1.png"); */
+        background-image: url("../../assets/pattern2.png");
         image-rendering: pixelated;
-        background-size: 1% auto;
-        box-shadow: inset 0 0 0.5vw rgba(0, 0, 0, 0.8);
-        margin: 5vw 0px;
-        padding: 1vw 0px;
-    }
-
-    #entry {
-        margin: 5vw;
-        display: block;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    /* An adaptively tiled image array */
-    .cluster {
-        margin: 0px 10vw;
-        padding: 0px;
-        --grid-min-size: 20rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 1fr));
-        grid-gap: 1rem;
-        align-items: center;
-    }
-
-    .cluster > li {
-        padding: 0px;
-        position: relative;
-        text-align: center;
-        margin: 1vw;
-    }
-
-    /* Text displays over image */
-    .cluster > li p {
-        background-color: rgba(0, 0, 0, 0.4);
-        /* pointer-events: none; */
-        position: absolute;
-        top: 0%;
-        left: 5%;
-        right: 5%;
-        transition: transform 0.1s, background-color 0.1s, color 0.1s;
-    }
-
-    .cluster > li:hover p{
-        background-color: rgba(0, 0, 0, 0.1);
-        color: rgba(255, 255, 255, 0.3);
-        transform: translate(-0.3rem, -0.3rem) scale(110%);
-    }
-
-    .cluster > li img {
-        width: 100%;
-        border: 0.4rem solid var(--peach);
-        box-shadow: 0rem 0rem var(--yellow);
-        transition: transform 0.1s, box-shadow 0.2s;
-    }
-
-    .cluster > li:hover img {
-        transform: translate(-0.3rem, -0.3rem);
-        box-shadow: 0.3rem 0.3rem var(--yellow);
-    }
-
-    img.pixelArt {
-        image-rendering: pixelated;
+        background-size: 0.8% auto;
+        box-shadow: inset 0 3px 20px rgba(0, 0, 0, 0.4);
+        margin: 5em 0px;
+        padding: 5em 0px;
     }
 
     #homeButton {

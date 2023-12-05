@@ -1,25 +1,25 @@
-import { faArtstation, faInstagram, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faArtstation, faGithub, faInstagram, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export const socials = [
     {
-        "icon": faArtstation,
-        "link": "https://www.artstation.com/tristanvoulelis"
-    },
-    {
-        "icon": faYoutube,
-        "link": "https://www.youtube.com/@tristanvoulelis4545"
+        "icon": faGithub,
+        "link": "https://github.com/Rec1dite"
     },
     {
         "icon": faLinkedin,
-        "link": "https://www.linkedin.com/in/tristan-voulelis-233804209"
+        "link": "https://www.linkedin.com/in/rec1dite"
+    },
+    {
+        "icon": faYoutube,
+        "link": "https://www.youtube.com/@rec1dite"
     },
     {
         "icon": faInstagram,
-        "link": "https://www.instagram.com/tristanvoulelis_art"
+        "link": "https://www.instagram.com/rec1dite"
     },
     {
         "icon": faEnvelope,
-        "link": "mail:tristanvoulelis@gmail.com"
-    },
+        "link": "mail:rec1dite@gmail.com"
+    }
 ]

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Fa from 'svelte-fa'
-  import { socials } from '../content/socials';
+    import { socials } from '../../content/socials';
 </script>
 
 <table class="mx-auto mt-10 mb-10">
@@ -9,7 +9,7 @@
         <td>
             <a href="{social.link}" target="_blank">
             <span class="badge-icon hover:variant-filled hover:cursor-pointer">
-                <Fa icon={social.icon} />
+                <Fa icon={social.icon} scale={1.2} />
             </span>
             </a>
         </td>
