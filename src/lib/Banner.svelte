@@ -95,12 +95,13 @@
 
     .title {
         width: 100%;
+        padding-left: 1vw;
         margin-bottom: 6vw;
 
         color: var(--peach);
         font-family: "Offside";
         line-height: 4vw;
-        font-size: 3vw;
+        font-size: 3.2vw;
 
         pointer-events: none;
     }
@@ -235,30 +236,13 @@
         width: 100%;
         height: auto;
 
-        background-color: var(--base);
+        background-color: var(--mantle);
         text-align: center;
-    }
-
-    #content > section {
-        background-image: url("pattern1.png");
-        image-rendering: pixelated;
-        background-size: 1% auto;
-        box-shadow: inset 0 0 0.5vw rgba(0, 0, 0, 0.8);
-        margin: 5vw 0;
-        padding: 1vw 0;
-    }
-
-    #content * {
-        image-rendering: initial;
     }
 
     #entry {
         margin: 5vw;
         display: block;
-    }
-
-    ul {
-        list-style: none;
     }
 
     #homeButton:hover {

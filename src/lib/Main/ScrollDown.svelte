@@ -6,9 +6,9 @@
 <div class="scrollDown">
     <a href="#about">
         <Fa icon={faAnglesDown} style="display: inline-block;" primaryColor="var(--col)" />
-        <br /><br />
+        <br />
         Scroll
-        <br /><br />
+        <br />
         <Fa icon={faAnglesDown} style="display: inline-block;" primaryColor="var(--col)" />
     </a>
 </div>
@@ -31,12 +31,16 @@
         font-family: "Offside";
         --col: white; /* arrow color */
         color: white; /* text color */
+        line-height: 4vw;
+        padding-top: 0;
 
-        transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-out;
     }
 
     .scrollDown a:hover {
-        transform: scale(1.05);
+        /* transform: scale(1.05); */
+        line-height: 3vw;
+        padding-top: 2vw;
 
         --col: var(--mauve); /* arrow color */
         color: var(--lavender); /* text color */

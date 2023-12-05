@@ -107,7 +107,7 @@
     }
 
     section {
-        background-image: url("pattern1.png");
+        /* background-image: url("pattern1.png"); */
         image-rendering: pixelated;
         background-size: 1% auto;
         box-shadow: inset 0 0 0.5vw rgba(0, 0, 0, 0.8);
