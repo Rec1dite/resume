@@ -1,61 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Dino Gironi</title>
-        <link rel="stylesheet" href="main.css"/>
-    </head>
-    <body>
-        <div id="big_wrapper">
-            <header id="top_header">
-                <h1>Dino Gironi</h1>
-            </header>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=1024"/> -->
 
-            <nav id="top_menu">
-                <ul>
-                    <li>Resume</li>
-                    <li>Projects</li>
-                    <li>Contact</li>
-                </ul>
-            </nav>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-            <div id="new_div">
+    <link href="https://fonts.googleapis.com/css2?family=Offside&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100..900&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lato:wght@100..900&display=swap" rel="stylesheet">  -->
 
-                <section id="main_section">
-                    <article>
-                        <header>
-                            <hgroup>
-                            <h1>Article</h1>
-                            <h2>Article Subtitle</h2>
-                            </hgroup>
-                        </header>
-                        <p>This is an article</p>
-                        <footer>
-                        </footer>
-                    </article>
-                    <article>
-                        <header>
-                            <hgroup>
-                                <h1>Article 2</h1>
-                                <h2>Article 2 Subtitle</h2>
-                            </hgroup>
-                        </header>
-                        <p>This is the content of article 2</p>
-                        <footer>
-                            This is a footer
-                        </footer>
-                    </article>
-                </section>
 
-                <aside id="side_news">
-                    <h4>Test</h4>
-                    This is a test
-                </aside>
-            </div>
+    <!-- <link rel="stylesheet" href="style.css"/> -->
 
-            <footer id="the_footer">
-                Youtube | Github | Whatsapp
-            </footer>
-        </div>
-    </body>
+    <title>Dino Gironi</title>
+
+    <script>
+      // Chrome mobile fix
+      // window.onload = function() {
+      //   if(!window.location.hash) {
+      //     window.location = window.location + '#main';
+      //     window.location.reload();
+      //   }
+      // }
+    </script>
+
+    <style>
+      :root {
+          --rosewater: #f5e0dc;
+          --flamingo: #f2cdcd;
+          --pink: #f5c2e7;
+          --mauve: #cba6f7;
+          --red: #f38ba8;
+          --maroon: #eba0ac;
+          --peach: #fab387;
+          --yellow: #f9e2af;
+          --green: #a6e3a1;
+          --teal: #94e2d5;
+          --sky: #89dceb;
+          --sapphire: #74c7ec;
+          --blue: #89b4fa;
+          --lavender: #b4befe;
+          --text: #cdd6f4;
+          --subtext1: #bac2de;
+          --subtext0: #a6adc8;
+          --overlay2: #9399b2;
+          --overlay1: #7f849c;
+          --overlay0: #6c7086;
+          --surface2: #585b70;
+          --surface1: #45475a;
+          --surface0: #313244;
+          --base: #1e1e2e;
+          --mantle: #181825;
+          --crust: #11111b;
+      }
+
+      * {
+          color: rgb(240, 240, 240);
+          font-family: "Jost";
+          scroll-behavior: smooth;
+      }
+
+      body {
+          overflow: hidden;
+          background: var(--base);
+          margin: 0px;
+          height: 100%;
+      }
+    </style>
+    <script type="module" crossorigin src="/site/assets/index-18f556aa.js"></script>
+    <link rel="stylesheet" href="/site/assets/index-06b1b18d.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    
+  </body>
 </html>
