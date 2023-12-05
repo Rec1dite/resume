@@ -3,18 +3,27 @@
     import Content from "./Main/Content.svelte";
     import Index from "./Main/Index.svelte";
     import ScrollDown from "./Main/ScrollDown.svelte";
+    import i1 from "../assets/1.png";
+    import i2 from "../assets/2.png";
+    import i3 from "../assets/3.png";
+    import i4 from "../assets/4.png";
+    import i5 from "../assets/5.png";
+    import fog from "../assets/Fog.png";
+    import light from "../assets/Light.png";
+
+    const path = window.location.host;
 
     const numFireflies = 10;
 
     const parallaxLayers = [
-        { depth: -4,    img: "5.png",       imgId: "sky" },
-        { depth: -3,    img: "4.png",       imgId: "sun" },
-        { depth: -2,    img: "3.png",       imgId: "planet" },
-        { depth: -1.2,  img: "2.png",       imgId: "city" },
-        { depth: 0,     img: "1.png",       imgId: "wall" },
-        { depth: 0,     img: "1.png",       imgId: "wallLightGlow" },
-        { depth: -1,    img: "Fog.png",     imgId: "fog" },
-        { depth: 0,     img: "Light.png",   imgId: "light" },
+        { depth: -4,    img: i5,        imgId: "sky" },
+        { depth: -3,    img: i4,        imgId: "sun" },
+        { depth: -2,    img: i3,        imgId: "planet" },
+        { depth: -1.2,  img: i2,        imgId: "city" },
+        { depth: 0,     img: i1,        imgId: "wall" },
+        { depth: 0,     img: i1,        imgId: "wallLightGlow" },
+        { depth: -1,    img: fog,       imgId: "fog" },
+        { depth: 0,     img: light,     imgId: "light" },
     ];
 </script>
 
@@ -27,7 +36,7 @@
         <!-- Scale factor = 1 + (-translateZ/perspective) -->
         <!-- Perspective = 1px -->
         <div class="parallaxLayer" style="transform: translateZ({layer.depth}px) scale({1 + (-layer.depth/1.0)});">
-            <img src="{layer.img}" class="pix" id="{layer.imgId}" alt="">
+            <img src={layer.img} class="pix" id="{layer.imgId}" alt="">
         </div>
         {/each}
         <!-- Fireflies -->
@@ -52,13 +61,14 @@
         </h1>
 
         <!-- Index -->
-        <Index />
-
-        <br /><br /><br />
-        <br /><br /><br />
+        <span class="index">
+            <Index />
+        </span>
 
         <!-- Scroll down arrow -->
-        <ScrollDown />
+        <span class="scrollDown">
+            <ScrollDown />
+        </span>
     </div>
 
     <!-- Home button -->
@@ -76,7 +86,7 @@
     #nav {
         position: absolute;
         width: 15vw;
-        border-spacing: 0px 1vw;
+        border-spacing: 0 1vw;
         /* border: 1px solid red; */
         left: 2vw;
         top: 5vw;
@@ -85,15 +95,23 @@
 
     .title {
         width: 100%;
-        /* padding-left: 0.4em; */
-        margin-bottom: 1.2em;
+        margin-bottom: 6vw;
 
         color: var(--peach);
         font-family: "Offside";
-        line-height: 1em;
-        font-size: 4em;
+        line-height: 4vw;
+        font-size: 3vw;
 
         pointer-events: none;
+    }
+
+    .index {
+        display: block;
+        margin-bottom: 6vw;
+    }
+
+    .scrollDown {
+        display: block;
     }
 
     .parallax {
@@ -162,7 +180,7 @@
 
     @keyframes fog-hover {
         from { left: 0vw; }
-        to { left: 20vw; }
+        to { left: 16vw; }
     }
 
     #fog {
@@ -212,7 +230,7 @@
     #content {
         position: absolute;
         display: block;
-        margin: 0px 0px;
+        margin: 0 0;
         top: 77vw;
         width: 100%;
         height: auto;
@@ -226,8 +244,8 @@
         image-rendering: pixelated;
         background-size: 1% auto;
         box-shadow: inset 0 0 0.5vw rgba(0, 0, 0, 0.8);
-        margin: 5vw 0px;
-        padding: 1vw 0px;
+        margin: 5vw 0;
+        padding: 1vw 0;
     }
 
     #content * {
@@ -249,9 +267,9 @@
 
     #main {
         position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 0px;
-        height: 0px;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
     }
 </style>

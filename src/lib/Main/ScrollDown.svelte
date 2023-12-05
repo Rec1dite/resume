@@ -18,10 +18,16 @@
         width: 100%;
         text-align: center;
         font-size: 2vw;
+        line-height: 2vw;
+    }
+
+    br {
+        font-size: 2vw;
     }
 
     .scrollDown a {
         display: inline-block;
+        font-size: 2vw;
         font-family: "Offside";
         --col: white; /* arrow color */
         color: white; /* text color */
