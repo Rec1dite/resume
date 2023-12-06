@@ -3,9 +3,26 @@ import type { ProjectData } from "../lib/Main/ProjectModal.svelte";
 export const projects: { [key: string]: ProjectData } = {
     "001_blix": {
         "title": "Blix",
-        "desc": "The quick brown fox jumps over the lazy dog",
+        "desc": "",
         "thumbnailImg": "https://images.unsplash.com/photo-1617296538902-887900d9b592?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzExMDB8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max&w=300&h=300&auto=format&fit=max",
-        "showcase": []
+        "showcase": [
+            { caption: "1", url: "" },
+            { caption: "2", url: "" },
+            { caption: "3", url: "" },
+            { caption: "4", url: "" },
+            { caption: "5", url: "" },
+            { caption: "6", url: "" },
+            { caption: "7", url: "" },
+            { caption: "8", url: "" },
+            { caption: "9", url: "" },
+            { caption: "10", url: "" },
+            { caption: "11", url: "" },
+            { caption: "12", url: "" },
+            { caption: "13", url: "" },
+            { caption: "14", url: "" },
+            { caption: "15", url: "" },
+            { caption: "16", url: "" }
+        ]
     },
     "002_ceevee": {
         "title": "CeeVee",

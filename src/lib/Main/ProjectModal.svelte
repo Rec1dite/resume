@@ -7,13 +7,17 @@
         name: string;
         url: string;
     };
+    export type ShowcaseReel = {
+        url: string;
+        caption: string;
+    };
     export type ProjectData = {
         title: string;
         desc: string;
         thumbnailImg: string; // img/vid URL
 
         year?: number | [number, number];
-        showcase?: string[]; // img/vid URL's
+        showcase?: ShowcaseReel[]; // img/vid URL's
         sources?: ProjectSource[];
         collaborators?: ProjectCollaborator[]
     };
@@ -40,7 +44,40 @@
             return store;
         });
     }
+
+    let selectedReel = 0;
+    const SELECT_CLICK_TIMEOUT = 100; // ms
+    let lastMouseDown = Date.parse("1970-01-01T00:00:00.000Z");
+    function selectReel(i: number) {
+        if (!dragging && Date.now() - lastMouseDown < SELECT_CLICK_TIMEOUT) {
+            selectedReel = i;
+        }
+    }
+
+    let reels: HTMLDivElement;
+    let dragging = false;
+    let startX = 0, startScroll = 0;
+    function beginDrag(e: MouseEvent) {
+        startX = e.clientX;
+        startScroll = reels.scrollLeft;
+        dragging = true;
+        lastMouseDown = Date.now();
+    }
+    function tryDrag(e: MouseEvent) {
+        if (!dragging) return;
+
+        const delta = e.clientX - startX;
+        reels.scrollLeft = startScroll - delta;
+    }
+    function endDrag(e: MouseEvent) {
+        dragging = false;
+    }
 </script>
+
+<svelte:window
+    on:mousemove|preventDefault={tryDrag}
+    on:mouseup|preventDefault={endDrag}
+/>
 
 {#if $modalStore && $modalStore.enabled}
 <div class="blocker" on:click={hide} on:keydown>
@@ -55,10 +92,30 @@
         <div class="visuals">
             {#if project?.showcase}
                 <div class="showing">
-                    <!-- <img class="media" src={project.thumbnailImg} alt={project.title}> -->
-                    <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="YouTube Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    {#if project?.showcase && project?.showcase[selectedReel]}
+                        {@const selected = project.showcase[selectedReel]}
+                        <img class="media" src={selected.url} alt={selected.caption}>
+
+                        <!-- <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="YouTube Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+                        <div class="caption">
+                            {selected.caption}
+                        </div>
+                    {:else}
+                        <img class="media" src={project.thumbnailImg} alt={project.title}>
+                    {/if}
                 </div>
-                <div class="reels">
+                <div class="reelsBox">
+                    <div
+                        class="reels"
+                        bind:this={reels}
+                        on:mousedown|preventDefault={beginDrag}
+                    >
+                        {#each project.showcase as reel, i}
+                            <div class="reel">
+                                <img class="media" src={reel.url} alt={reel.caption} on:click={() => selectReel(i)} on:keydown>
+                            </div>
+                        {/each}
+                    </div>
                 </div>
             {:else if project?.thumbnailImg}
                 <div class="showing">
@@ -127,13 +184,14 @@
 
     .visuals {
         display: grid;
-        grid-template-rows: 7fr 1fr;
+        grid-template-rows: 1fr 5rem;
         padding: 1em;
         overflow: hidden;
     }
 
     .visuals .showing {
         display: block;
+        position: relative;
         flex-direction: column;
         justify-content: center;
         background-color: var(--crust);
@@ -150,9 +208,50 @@
         object-fit: contain;
     }
 
-    .visuals .reels {
-        display: grid;
-        border: 1px solid purple;
+    .visuals .showing .caption {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        text-align: center;
+        color: white;
+        background: linear-gradient(transparent 0%, #00000088 100%);
+    }
+
+    .visuals .reelsBox {
+        width: 100%;
+        height: 100%;
+
+        overflow: hidden;
+    }
+
+    .visuals .reelsBox .reels {
+        --gap: 6px;
+        display: flex;
+        max-width: 100%;
+        width: min-content;
+        height: 100%;
+        margin: auto;
+
+        align-items: center;
+        gap: var(--gap);
+        background-color: var(--crust);
+        padding: var(--gap);
+        border-radius: var(--gap);
+        box-shadow: 0 0 10px #000000;
+
+        overflow-x: auto;
+        scroll-behavior: auto;
+    }
+
+    .visuals .reelsBox .reels .reel {
+        background-color: var(--crust);
+        min-width: 6em;
+        height: 100%;
+        border: 1px solid cyan;
+
+        user-select: none;
+        cursor: pointer;
     }
 
     .text {
