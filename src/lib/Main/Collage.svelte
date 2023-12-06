@@ -89,6 +89,6 @@
     .hover:hover {
         opacity: 1;
         transform: scale(var(--hoverScale));
-        z-index: 10000;
+        z-index: 100;
     }
 </style>

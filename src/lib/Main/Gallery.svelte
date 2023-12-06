@@ -1,9 +1,5 @@
 <script lang="ts">
-  import Project from "./Project.svelte";
   import Collage, { type CollageItem } from "./Collage.svelte";
-  import Item from "./Item.svelte";
-
-  let selectedProject = null;
 
   function handleGalleryClick(e) {
     const parts = e.explicitOriginalTarget.className.split(" ");
@@ -30,8 +26,4 @@
         hoverScale={1.05}
         {content}
     />
-
-    {#if selectedProject}
-        <Project />
-    {/if}
 </div>

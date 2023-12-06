@@ -3,25 +3,32 @@
     import Gallery from "./Gallery.svelte";
     import Bio from "./Bio.svelte";
     import { type CollageItem } from "./Collage.svelte";
-    import Item from "./Item.svelte";
+    import ProjectItem from "./ProjectItem.svelte";
+    import { projects } from "../../content/projects";
 
-    let galleryItems: CollageItem[] = [
-        {
-            element: "img",
-            props: {
-                src: "https://via.placeholder.com/150",
-                width: "100%",
-                style: "display: inline-block; border-radius: 1em"
-            }
-        },
-        {
-            component: Item,
-            props: {
-                src: "https://via.placeholder.com/150",
-            }
+    const galleryItems: CollageItem[] = Object.keys(projects).sort().map((p) => ({
+        component: ProjectItem,
+        props: {
+            project: projects[p]
         }
-    ];
-    galleryItems = [...galleryItems, ...galleryItems, ...galleryItems];
+    }));
+
+    // let galleryItems: CollageItem[] = [
+    //     {
+    //         element: "img",
+    //         props: {
+    //             src: "https://via.placeholder.com/150",
+    //             width: "100%",
+    //             style: "display: inline-block; border-radius: 1em"
+    //         }
+    //     },
+    //     {
+    //         component: ProjectItem,
+    //         props: {
+    //             src: "https://via.placeholder.com/150",
+    //         }
+    //     }
+    // ];
 
 </script>
 
@@ -30,7 +37,7 @@
     <Bio />
 </section>
 
-<section id="programming">
+<section id="projects">
     <h1>Projects</h1>
     <Gallery content={galleryItems} />
 </section>
