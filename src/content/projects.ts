@@ -1,10 +1,13 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { ProjectData } from "../lib/Main/ProjectModal.svelte";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 export const projects: { [key: string]: ProjectData } = {
     "001_blix": {
         "title": "Blix",
-        "desc": "",
+        "desc": "Blix is an extensible AI-assisted graph editor.\n\nBlix is a cross-platform desktop application designed for power through extensibility. It provides a composable node-based system that establishes a common ground to facilitate collaborative human/AI media editing workflows.",
         "thumbnailImg": "https://images.unsplash.com/photo-1617296538902-887900d9b592?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzExMDB8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max&w=300&h=300&auto=format&fit=max",
+        year: 2023,
         "showcase": [
             { caption: "1", url: "" },
             { caption: "2", url: "" },
@@ -22,6 +25,22 @@ export const projects: { [key: string]: ProjectData } = {
             { caption: "14", url: "" },
             { caption: "15", url: "" },
             { caption: "16", url: "" }
+        ],
+        sources: [
+            {
+                type: "github",
+                url: "https://github.com/BlixEditor/blix"
+            },
+            {
+                type: "website",
+                url: "https://the-spanishinquisition.github.io/blix-site"
+            }
+        ],
+        collaborators: [
+            { name: "Armand Krynauw", url: "https://github.com/ArmandKrynauw" },
+            { name: "Francois Combrinck", url: "https://github.com/CenturionLC" },
+            { name: "Jake Mileham", url: "https://github.com/SharkmanZA" },
+            { name: "Karel Olwage", url: "https://github.com/Klairgo" }
         ]
     },
     "002_ceevee": {

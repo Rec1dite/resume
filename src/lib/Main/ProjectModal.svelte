@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
+    export type ProjectLinkType = "github" | "website" | "download" | "document";
     export type ProjectSource = {
-        icon: IconDefinition;
+        type: ProjectLinkType;
         url: string;
     };
     export type ProjectCollaborator = {
@@ -26,14 +27,22 @@
         enabled: boolean;
         project: ProjectData;
     };
+
+    const linkTypeToIcon: Record<ProjectLinkType, IconDefinition> = {
+        github: faGithub,
+        website: faHome,
+        download: faDownload,
+        document: faFile
+    };
 </script>
 
 <script lang="ts">
-    import { faClose, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
+    import { faClose, faDownload, faFile, faHome, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
     import Fa from "svelte-fa";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
     import MediaQuery from "./utils/MediaQuery.svelte";
+  import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
     const modalStore = getContext<Writable<ModalData>>("modalStore");
     $: project = $modalStore.project;
@@ -77,6 +86,7 @@
 <svelte:window
     on:mousemove|preventDefault={tryDrag}
     on:mouseup|preventDefault={endDrag}
+    on:keyup={({key}) => { if (key === "Escape") hide(); }}
 />
 
 {#if $modalStore && $modalStore.enabled}
@@ -125,10 +135,39 @@
         </div>
 
         <div class="text">
-            <div class="title">
-            </div>
-            <div class="description">
-            </div>
+            {#if project}
+                <div class="title">{project.title}</div>
+                {#if project.year}
+                    <div class="year">({project.year})</div>
+                {/if}
+                <br />
+                {#if project.sources}
+                    <div class="sources">
+                        <b class="font-semibold">Links:</b><br />
+                        {#each project.sources as source}
+                        <a href={source.url}>
+                            <Fa style="display: inline-block; margin-right: 0.2em;" icon={linkTypeToIcon[source.type]}/>
+                            <u>{source.url}</u>
+                        </a>
+                        <br />
+                        {/each}
+                    </div>
+                {/if}
+                {#if project.collaborators}
+                    <div class="collaborators">
+                        <b class="font-semibold">Collaborators:</b><br />
+                        {#each project.collaborators as collaborator}
+                        <a class="inline-block px-1" href={collaborator.url}>
+                            <u>{collaborator.name}</u>
+                        </a>
+                        {/each}
+                    </div>
+                {/if}
+                <hr />
+                <div class="description">{project.desc}</div>
+            {:else}
+                ERR: No project data
+            {/if}
         </div>
 
     </div>
@@ -145,7 +184,6 @@
         backdrop-filter: blur(4px) brightness(0.8) saturate(1.2);
         cursor: pointer;
     }
-
     .project {
         position: absolute;
         display: grid;
@@ -166,18 +204,17 @@
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
         cursor: default;
     }
-
     @media only screen and (max-width: 960px) {
         .project {
             grid-template-columns: unset;
             grid-template-rows: 1fr 1.618033fr;
         }
     }
-
     .closeButton {
         position: absolute;
-        top: 24px;
-        right: 24px;
+        top: 12px;
+        right: 12px;
+        padding: 12px;
         color: var(--text);
         cursor: pointer;
     }
@@ -188,7 +225,6 @@
         padding: 1em;
         overflow: hidden;
     }
-
     .visuals .showing {
         display: block;
         position: relative;
@@ -198,16 +234,15 @@
         border-radius: 10px;
 
         padding: 0;
+        margin-bottom: 0.4em;
 
         overflow: hidden;
     }
-
     .visuals .showing .media {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-
     .visuals .showing .caption {
         position: absolute;
         width: 100%;
@@ -217,14 +252,12 @@
         color: white;
         background: linear-gradient(transparent 0%, #00000088 100%);
     }
-
     .visuals .reelsBox {
         width: 100%;
         height: 100%;
 
         overflow: hidden;
     }
-
     .visuals .reelsBox .reels {
         --gap: 6px;
         display: flex;
@@ -243,7 +276,6 @@
         overflow-x: auto;
         scroll-behavior: auto;
     }
-
     .visuals .reelsBox .reels .reel {
         background-color: var(--crust);
         min-width: 6em;
@@ -255,16 +287,42 @@
     }
 
     .text {
-        display: grid;
-        border: 1px solid blue;
-        padding: 1em;
+        padding: 2.6em 2em 2em 1em;
+    }
+    .text div {
+        display: inline-block;
+        /* border: 1px solid magenta; */
     }
     .text .title {
-        display: grid;
-        border: 1px solid magenta;
+        font-family: "Offside";
+        font-size: 3rem;
+        line-height: 3rem;
+        margin-bottom: 1.2rem;
+        /* border: 1px solid magenta; */
+    }
+    .text .year {
+        float: right;
+        font-family: "Jost";
+        font-style: italic;
+        font-weight: 200;
+        line-height: 1rem;
+        margin-top: 2rem;
+    }
+    .text .sources {
+        font-weight: 250;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    .text .collaborators {
+        font-weight: 250;
+        margin-left: 1rem;
+    }
+    .text hr {
+        border-top: 1px solid var(--text);
+        margin: 2rem 0px;
     }
     .text .description {
-        display: grid;
-        border: 1px solid yellow;
+        white-space: pre-line;
+        font-weight: 320;
     }
 </style>
