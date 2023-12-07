@@ -15,7 +15,7 @@
   import { setContext } from 'svelte';
   import ProjectModal, { type ModalData } from './lib/Main/ProjectModal.svelte';
 
-  const modalStore = writable<ModalData>({ enabled: true, project: null });
+  const modalStore = writable<ModalData>({ enabled: false, project: null });
   setContext('modalStore', modalStore);
 
 </script>

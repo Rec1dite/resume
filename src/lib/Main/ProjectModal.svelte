@@ -9,15 +9,17 @@
         url: string;
     };
     export type ShowcaseReel = {
-        url: string;
+        yt?: string;
+        img?: string;
         caption: string;
     };
+
     export type ProjectData = {
         title: string;
         desc: string;
         thumbnailImg: string; // img/vid URL
 
-        year?: number | [number, number];
+        year?: number | [number, number|null];
         showcase?: ShowcaseReel[]; // img/vid URL's
         sources?: ProjectSource[];
         collaborators?: ProjectCollaborator[]
@@ -37,7 +39,7 @@
 </script>
 
 <script lang="ts">
-    import { faClose, faDownload, faFile, faHome, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
+    import { faClose, faDownload, faFile, faHome, faPlay, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
     import Fa from "svelte-fa";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
@@ -104,9 +106,12 @@
                 <div class="showing">
                     {#if project?.showcase && project?.showcase[selectedReel]}
                         {@const selected = project.showcase[selectedReel]}
-                        <img class="media" src={selected.url} alt={selected.caption}>
+                        {#if selected?.yt}
+                            <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/{selected.yt}" title="YouTube Player" frameborder="0" allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        {:else if selected?.img}
+                            <img class="media" src={selected.img} alt={selected.caption}>
+                        {/if}
 
-                        <!-- <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="YouTube Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
                         <div class="caption">
                             {selected.caption}
                         </div>
@@ -121,8 +126,15 @@
                         on:mousedown|preventDefault={beginDrag}
                     >
                         {#each project.showcase as reel, i}
-                            <div class="reel">
-                                <img class="media" src={reel.url} alt={reel.caption} on:click={() => selectReel(i)} on:keydown>
+                            <div class="reel relative" on:click={() => selectReel(i)} on:keydown>
+                                {#if reel?.yt}
+                                    <img class="media" src="https://img.youtube.com/vi/{reel.yt}/0.jpg" alt={reel.caption}>
+                                    <div class="flex absolute top-0 left-0 w-full h-full justify-center items-center z-10 select-none">
+                                        <Fa icon={faPlay} scale={1.2} />
+                                    </div>
+                                {:else if reel?.img}
+                                    <img class="media" src={reel.img} alt={reel.caption}>
+                                {/if}
                             </div>
                         {/each}
                     </div>
@@ -138,7 +150,14 @@
             {#if project}
                 <div class="title">{project.title}</div>
                 {#if project.year}
-                    <div class="year">({project.year})</div>
+                    <div class="year">
+                        {#if typeof project.year === "number"}
+                            ({project.year})
+                        {:else if typeof project.year === "object"}
+                        {@const [from, to] = project.year}
+                            ({from} - {to ?? "..."})
+                        {/if}
+                    </div>
                 {/if}
                 <br />
                 {#if project.sources}
@@ -234,14 +253,10 @@
         border-radius: 10px;
 
         padding: 0;
-        margin-bottom: 0.4em;
+        margin-bottom: 1em;
+        box-shadow: 0 4px 10px #00000080;
 
         overflow: hidden;
-    }
-    .visuals .showing .media {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
     }
     .visuals .showing .caption {
         position: absolute;
@@ -280,10 +295,14 @@
         background-color: var(--crust);
         min-width: 6em;
         height: 100%;
-        border: 1px solid cyan;
 
         user-select: none;
         cursor: pointer;
+    }
+    .media {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     .text {
@@ -307,6 +326,7 @@
         font-weight: 200;
         line-height: 1rem;
         margin-top: 2rem;
+        margin-right: 1em;
     }
     .text .sources {
         font-weight: 250;
