@@ -10,6 +10,8 @@
     import i5 from "../assets/5.png";
     import fog from "../assets/Fog.png";
     import light from "../assets/Light.png";
+  import Fa from "svelte-fa";
+  import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
     const path = window.location.host;
 
@@ -20,9 +22,9 @@
         { depth: -3,    img: i4,        imgId: "sun" },
         { depth: -2,    img: i3,        imgId: "planet" },
         { depth: -1.2,  img: i2,        imgId: "city" },
+        { depth: -1,    img: fog,       imgId: "fog" },
         { depth: 0,     img: i1,        imgId: "wall" },
         { depth: 0,     img: i1,        imgId: "wallLightGlow" },
-        { depth: -1,    img: fog,       imgId: "fog" },
         { depth: 0,     img: light,     imgId: "light" },
     ];
 </script>
@@ -69,6 +71,19 @@
         <span class="scrollDown">
             <ScrollDown />
         </span>
+
+    </div>
+
+    <div id="info">
+        <!-- Site source link -->
+        <span class="sourceLink">
+            <a href="https://github.com/Rec1dite/resume" target="_blank">
+            <u>Site source</u>
+            <span class="icon">
+                <Fa style="display: inline-block;" icon={faGithub} scale={2} primaryColor="var(--sourceLinkCol)" />
+            </span>
+            </a>
+        </span>
     </div>
 
     <!-- Home button -->
@@ -113,6 +128,31 @@
 
     .scrollDown {
         display: block;
+    }
+
+    #info {
+        position: absolute;
+        width: 15vw;
+        border-spacing: 0 1vw;
+        /* border: 1px solid red; */
+        right: 2vw;
+        top: 48vw;
+        z-index: 1000!important;
+    }
+
+    .sourceLink {
+        --sourceLinkCol: var(--overlay2);
+        float: right;
+    }
+
+    .sourceLink * {
+        color: var(--sourceLinkCol);
+        font-size: 1vw;
+        font-weight: 300;
+    }
+
+    .sourceLink .icon {
+        margin-left: 1vw;
     }
 
     .parallax {

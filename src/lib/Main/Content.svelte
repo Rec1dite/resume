@@ -42,44 +42,8 @@
     <Gallery content={galleryItems} />
 </section>
 
-<section id="programming">
-    <h1>Programming</h1>
-    <img src="thumbnails/CeeVee.jpg" alt="">
-    <p>CeeVee Graphics Engine</p>
-    <img src="thumbnails/Splinter2.jpg" alt="">
-    <p>Splinter 2D Physics Engine</p>
-    <img class="pixelArt" src="thumbnails/LegoGameBuilder.png" alt="">
-    <p>Lego Game Builder</p>
-    <img src="thumbnails/Hashed.jpg" alt="">
-    <p>Hashed VR Cinematic</p>
-    <img src="thumbnails/TypingTest.jpg" alt="">
-    <p>Typing Test</p>
-</section>
-
-<section id="games">
-    <h1>Games</h1>
-    <a href="https://slightlyaboveaverage.itch.io/delirium">
-    <img src="thumbnails/Delirium1.png" alt="">
-    <p>Delirium<br/>Endless Shooter</p>
-    </a>
-    <img src="thumbnails/KnockOff.png" alt="">
-    <p>Knock Off!<br/>Multiplayer Platformer</p>
-    <img src="thumbnails/SpellingBee.png" alt="">
-    <p>Spelling Bee Quiz App</p>
-    <img src="thumbnails/ARTSurvival.jpg" alt="">
-    <p>ART: Survival Evolved<br/>Matric VR Art Final</p>
-    <img src="thumbnails/placeholder.jpg" alt="">
-    <p>Space Tower Defense</p>
-</section>
-
-<section id="graphics">
-    <h1>Graphics</h1>
-    <img src="thumbnails/Posters.png" alt="">
-    <p>Posters</p>
-    <img src="thumbnails/Iconography.jpg" alt="">
-    <p>Iconography</p>
-    <img src="thumbnails/Renders.jpg" alt="">
-    <p>Renders</p>
+<section id="skills">
+    <h1>Skills</h1>
 </section>
 
 <section id="contact" >

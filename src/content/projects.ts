@@ -8,6 +8,20 @@ import artSurvival_conceptFpv from "../content/projects/artSurvival/concept_fpv.
 import artSurvival_conceptItems1 from "../content/projects/artSurvival/concept_items1.jpg";
 import artSurvival_conceptItems2 from "../content/projects/artSurvival/concept_items2.jpg";
 import artSurvival_conceptPoster from "../content/projects/artSurvival/concept_poster.jpg";
+import splinter_thumb from "../content/projects/splinter/thumb.jpg";
+import legoGameBuilder_bricks from "../content/projects/legoGameBuilder/bricks.png";
+import legoGameBuilder_goose from "../content/projects/legoGameBuilder/goose.png";
+import legoGameBuilder_house from "../content/projects/legoGameBuilder/house.png";
+import legoGameBuilder_rocket from "../content/projects/legoGameBuilder/rocket.png";
+import legoGameBuilder_soccer from "../content/projects/legoGameBuilder/soccer.png";
+import rudasa_thumb from "../content/projects/rudasa/thumb.png";
+import processing_thumb from "../content/projects/processing/thumb.png";
+import delirium_thumb from "../content/projects/delirium/thumb.png";
+import spellingBee_thumb from "../content/projects/spellingBee/thumb.png";
+import delirium_screenshot1 from "../content/projects/delirium/screenshot1.jpg";
+import delirium_screenshot2 from "../content/projects/delirium/screenshot2.jpg";
+import delirium_screenshot3 from "../content/projects/delirium/screenshot3.jpg";
+import cobwebs_thumb from "../content/projects/cobwebs/thumb.png";
 
 export const projects: { [key: string]: ProjectData } = {
     "001_blix": {
@@ -32,7 +46,7 @@ export const projects: { [key: string]: ProjectData } = {
             { name: "Karel Olwage", url: "https://github.com/Klairgo" }
         ],
         showcase: [
-            { caption: "Demo vid", yt: "7y2TohRtZDU" },
+            { caption: "Demo of Blix editor: Querying the AI, Reactive graph updates, Image editing", yt: "7y2TohRtZDU" },
             { caption: "Editor screenshot", img: blix_screenshot1 },
         ]
     },
@@ -60,48 +74,164 @@ export const projects: { [key: string]: ProjectData } = {
             { caption: "Original concept drawing", img: hashed_concept },
         ]
     },
-    "004_artSurvival": {
+    "004_splinter": {
+        title: "Splinter",
+        desc: "2D physics engine designed for simulating ropes and pendulums.\n\nWritten from scratch in C++ using [olcPixelGameEngine](https://github.com/OneLoneCoder/olcPixelGameEngine) for rendering.",
+        thumbnailImg: splinter_thumb,
+        showcase: [
+            { caption: "Messing around with Splinter", yt: "q3iFZbSLArM" },
+        ]
+    },
+    "005_legoGameBuilder": {
+        title: "Lego Game Builder",
+        year: 2021,
+        desc: "2D Lego-based level creation engine for teaching kids game design and as a creative tool for education.\n\nFeatures:\n- Avatar creator\n- 'Build mode' for designing and building a world\n- 'Play mode' for playing through a world\n- LAN multiplayer",
+        thumbnailImg: legoGameBuilder_rocket,
+        showcase: [
+            { caption: "Playthrough & world showcase", yt: "u7pUdY9Fbjw" },
+            { caption: "Brick palette", img: legoGameBuilder_bricks },
+            { caption: "Goose pixel art", img: legoGameBuilder_goose },
+            { caption: "House build", img: legoGameBuilder_house },
+            { caption: "Rocket build", img: legoGameBuilder_rocket },
+            { caption: "Soccer stadium build", img: legoGameBuilder_soccer }
+        ]
+    },
+    "006_processing": {
+        title: "Processing3D Crap",
+        year: [2017, 2018],
+        desc: "A bunch of random crap I made in high school when I should have been studying.",
+        thumbnailImg: processing_thumb,
+    },
+    "007_rudasa": {
+        title: "RuDASA Website",
+        year: 2022,
+        desc: "Next.js",
+        thumbnailImg: rudasa_thumb,
+        sources: [{
+                type: "website",
+                url: "https://rudasa.org.za"
+        }],
+        collaborators: [
+            { name: "Keelan Matthews", url: "https://github.com/Keelan-Matthews" },
+            { name: "Tayla Orsmond", url: "https://github.com/tayla-orsmond" }
+        ]
+    },
+    "008_artSurvival": {
         title: "ART: Survival",
         desc: "This was one of my matric visual art final pieces, designed to be a partially-gamified exploration of VR interactions.\n\nThe primary focus was to allow the player to mess around with a bunch of interesting VR trinkets and weapons in a cyber-classroom environment.\nThe scene was designed to be a parody of the art room environment at my school, where you take the role of the teacher who must fend off angry cyborg art students after you've given them failing grades.\n\nAll assets were 3D modelled/textured by me. Made in Unity using the XR Interaction Toolkit with custom scripts for object interaction and scene navigation.",
         thumbnailImg: artSurvival_thumb,
         showcase: [
             { caption: "Demo playthrough", yt: "KxiY5wFny6s" },
-            { caption: "Main boss animation", yt: "KyQCT3VagTc" },
-            { caption: "Student enemy animantion", yt: "B1-q8d8WsP4" },
+            { caption: "Main boss animations", yt: "KyQCT3VagTc" },
+            { caption: "Basic enemy animantions", yt: "B1-q8d8WsP4" },
             { caption: "First-person view concept sketch", img: artSurvival_conceptFpv, },
             { caption: "Items concept sketch", img: artSurvival_conceptItems1, },
             { caption: "Items concept sketch", img: artSurvival_conceptItems2, },
             { caption: "Concept poster sketch", img: artSurvival_conceptPoster, }
         ]
     },
-    "005_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1542835435-4fa357baa00b?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY3NzN8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "009_delirium": {
+        title: "Delirium",
+        year: 2021,
+        desc: "Infinite runner 3rd-person shooter made in 48 hours for the 2021 GMTK Game Jam.\n\nPlay as a delirious prisoner trying to escape asylum by battling waves of guards as he descends into madness.",
+        thumbnailImg: delirium_thumb,
+        sources: [
+            {
+                type: "website",
+                url: "https://slightlyaboveaverage.itch.io/delirium"
+            }
+        ],
+        collaborators: [
+            { name: "James Lamusse", url: "https://jameslamusse.github.io" },
+            { name: "Tristan Voulelis", url: "https://www.artstation.com/tristanvoulelis" }
+        ],
+        showcase: [
+            { caption: "Trailer", yt: "TzEtEfV3SDg" },
+            { caption: "Gameplay screenshot 1", img: delirium_screenshot1 },
+            { caption: "Gameplay screenshot 2", img: delirium_screenshot2 },
+            { caption: "Gameplay screenshot 3", img: delirium_screenshot3 }
+        ]
     },
-    "006_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1553184570-557b84a3a308?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY2NTF8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "010_spellingBee": {
+        title: "Spelling Bee",
+        year: 2020,
+        desc: "A simple level-based spelling bee game designed to help kids practice for the Vodacom Spelling Bee.\nThe project was unfortunately scrapped before reaching fruition.",
+        thumbnailImg: spellingBee_thumb,
+        showcase: [
+            { caption: "Pre-alpha gameplay demo", yt: "qIiD1KGHN0w" },
+            { caption: "Custom water/island shaders", yt: "0jZkQzmcsNM" }
+        ]
     },
-    "007_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1603855873822-0931a843ee3a?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY3ODJ8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "011_espr": {
+        title: "Espr",
+        year: 2023,
+        githubRepo: "Rec1dite/espr",
+        desc: "A simple polybar module to remind you when loadshedding is scheduled.\n\nShould work for most other Linux status bars too.",
+        sources: [
+            {
+                type: "github",
+                url: "https://github.com/Rec1dite/espr"
+            }
+        ],
+        showcase: [{ caption: "Repo", gh: "Rec1dite/espr" }]
     },
-    "008_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1509130446053-899ae7358ce6?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY2NjF8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "012_feetpics": {
+        title: "FeeTPics",
+        year: 2023,
+        githubRepo: "Rec1dite/FeeTPics",
+        desc: "An FTP auto-backupper for your projects.\n\nMonitors your project directory for changes then automatically caches and uploads backups at regular intervals.\nFTP implemented with raw websockets",
+        collaborators: [
+            { name: "Daniel Radloff", url: "https://github.com/Daniel-Radloff" },
+        ],
+        sources: [
+            {
+                type: "github",
+                url: "https://github.com/Rec1dite/FeeTPics"
+            }
+        ],
+        showcase: [{ caption: "Repo", gh: "Rec1dite/FeeTPics" }]
     },
-    "009_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1508931133503-b1944a4ecdd5?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY3OTV8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "013_splParser": {
+        title: "SPL Parser/Compiler",
+        year: 2023,
+        githubRepo: "Rec1dite/splParser",
+        desc: "A top-down recursive-descent parser and compiler for the SPL mock programming language.\n\nCross-compiles to executable BASIC.",
+        sources: [
+            {
+                type: "github",
+                url: "https://github.com/Rec1dite/splParser"
+            }
+        ],
+        showcase: [{ caption: "Repo", gh: "Rec1dite/splParser" }]
     },
-    "010_": {
-        title: "TODO",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        thumbnailImg: "https://images.unsplash.com/photo-1633053663400-655b31fb88ac?ixid=M3w0Njc5ODF8MHwxfGFsbHx8fHx8fHx8fDE2ODc5NzY4MDV8&ixlib=rb-4.0.3&w=300&h=300&auto=format&fit=max",
+    "014_cobwebs": {
+        title: "Cobwebs",
+        year: 2023,
+        thumbnailImg: cobwebs_thumb,
+        desc: "A collection of small WebGL projects/experiments.\n\nWritten in raw WebGL.",
+        sources: [
+            {
+                type: "website",
+                url: "https://rec1dite.github.io/cobwebs/"
+            },
+            {
+                type: "github",
+                url: "https://github.com/Rec1dite/cobwebs"
+            }
+        ],
+        showcase: [{ caption: "Repo", gh: "Rec1dite/cobwebs" }]
+    },
+    "014_knack": {
+        title: "Cobwebs",
+        year: 2023,
+        githubRepo: "Rec1dite/knack",
+        desc: "Solving the knapsack problem with a genetic algorithm and ant colony optimization.",
+        sources: [
+            {
+                type: "github",
+                url: "https://github.com/Rec1dite/knack"
+            }
+        ],
+        showcase: [{ caption: "Repo", gh: "Rec1dite/knack" }]
     },
 };

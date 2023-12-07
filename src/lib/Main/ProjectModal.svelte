@@ -11,13 +11,15 @@
     export type ShowcaseReel = {
         yt?: string;
         img?: string;
+        gh?: string;
         caption: string;
     };
 
     export type ProjectData = {
         title: string;
         desc: string;
-        thumbnailImg: string; // img/vid URL
+        thumbnailImg?: string; // img/vid URL
+        githubRepo?: string;
 
         year?: number | [number, number|null];
         showcase?: ShowcaseReel[]; // img/vid URL's
@@ -44,7 +46,8 @@
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
     import MediaQuery from "./utils/MediaQuery.svelte";
-  import { faGithub } from "@fortawesome/free-brands-svg-icons";
+    import { faGithub } from "@fortawesome/free-brands-svg-icons";
+    import RepoCard from "./utils/RepoCard.svelte";
 
     const modalStore = getContext<Writable<ModalData>>("modalStore");
     $: project = $modalStore.project;
@@ -107,9 +110,15 @@
                     {#if project?.showcase && project?.showcase[selectedReel]}
                         {@const selected = project.showcase[selectedReel]}
                         {#if selected?.yt}
-                            <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/{selected.yt}" title="YouTube Player" frameborder="0" allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe class="media" width="560" height="315" src="https://www.youtube-nocookie.com/embed/{selected.yt}" title="YouTube Player" frameborder="0" allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
                         {:else if selected?.img}
                             <img class="media" src={selected.img} alt={selected.caption}>
+                        {:else if selected?.gh}
+                            <div class="media">
+                                <!-- <RepoCard slug={selected.gh} /> -->
+                            </div>
+                        {:else}
+                            ERR: No media
                         {/if}
 
                         <div class="caption">
@@ -128,12 +137,16 @@
                         {#each project.showcase as reel, i}
                             <div class="reel relative" on:click={() => selectReel(i)} on:keydown>
                                 {#if reel?.yt}
-                                    <img class="media" src="https://img.youtube.com/vi/{reel.yt}/0.jpg" alt={reel.caption}>
+                                    <img class="media" src="https://img.youtube.com/vi/{reel.yt}/0.jpg" alt={reel?.caption ?? ""}>
                                     <div class="flex absolute top-0 left-0 w-full h-full justify-center items-center z-10 select-none">
                                         <Fa icon={faPlay} scale={1.2} />
                                     </div>
                                 {:else if reel?.img}
                                     <img class="media" src={reel.img} alt={reel.caption}>
+                                {:else if reel?.gh}
+                                    <div class="flex absolute top-0 left-0 w-full h-full justify-center items-center z-10 select-none">
+                                        <Fa icon={faGithub} scale={1.2} />
+                                    </div>
                                 {/if}
                             </div>
                         {/each}
