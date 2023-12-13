@@ -86,6 +86,9 @@
     function endDrag(e: MouseEvent) {
         dragging = false;
     }
+    function scrollReels(e: WheelEvent) {
+        reels.scrollLeft += e.deltaY/2;
+    }
 </script>
 
 <svelte:window
@@ -133,9 +136,10 @@
                         class="reels"
                         bind:this={reels}
                         on:mousedown|preventDefault={beginDrag}
+                        on:wheel|preventDefault={scrollReels}
                     >
                         {#each project.showcase as reel, i}
-                            <div class="reel relative {i==selectedReel?'selected':''}" on:click={() => selectReel(i)} on:keydown>
+                            <div class="reel relative {i==selectedReel?'selected':''}" on:click={() => selectReel(i)} on:keydown title={reel.caption}>
                                 {#if reel?.yt}
                                     <img class="media" src="https://img.youtube.com/vi/{reel.yt}/0.jpg" alt={reel?.caption ?? ""}>
                                     <div class="flex absolute top-0 left-0 w-full h-full justify-center items-center z-10 select-none">
@@ -279,6 +283,7 @@
         text-align: center;
         color: white;
         background: linear-gradient(transparent 0%, #00000088 100%);
+        pointer-events: none;
     }
     .visuals .reelsBox {
         width: 100%;
