@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-    import { onMount, createEventDispatcher, SvelteComponent } from "svelte";
+    import { onMount } from "svelte";
     import { tick } from "svelte";
 
     export let gap = "10px";
@@ -15,8 +15,6 @@
 
     export let content: CollageItem[] = [];
     export let hoverScale = 1;
-
-    const dispatch = createEventDispatcher();
 
     let columns: CollageItem[][] = [];
     let galleryWidth = 0;
@@ -30,8 +28,6 @@
         --hoverScale: ${hoverScale};
     `;
 
-    onMount(draw);
-
     async function draw() {
         await tick();
 
@@ -43,10 +39,12 @@
             columns[idx] = [ ...(columns[idx] || []), content[i] ];
         }
     }
+
+    onMount(draw);
 </script>
 
-{#if columns}
-    <div id="gallery" bind:clientWidth={galleryWidth} style={galleryStyle}>
+<div id="gallery" bind:clientWidth={galleryWidth} style={galleryStyle}>
+    {#if columns}
         {#each columns as col}
             <div class="column">
                 {#each col as item}
@@ -60,8 +58,8 @@
                 {/each}
             </div>
         {/each}
-    </div>
-{/if}
+    {/if}
+</div>
 
 <style>
     #gallery {

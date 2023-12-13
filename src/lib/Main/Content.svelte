@@ -5,6 +5,7 @@
     import { type CollageItem } from "./Collage.svelte";
     import ProjectItem from "./ProjectItem.svelte";
     import { projects } from "../../content/projects";
+  import Skills from "./Skills.svelte";
 
     const galleryItems: CollageItem[] = Object.keys(projects).sort().map((p) => ({
         component: ProjectItem,
@@ -44,6 +45,7 @@
 
 <section id="skills">
     <h1>Skills</h1>
+    <Skills />
 </section>
 
 <section id="contact" >

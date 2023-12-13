@@ -15,11 +15,9 @@
   }
 
   export let content: CollageItem[] = []
-
 </script>
 
 <div class="w-full max-w-6xl mx-auto">
-    <!-- on:click={handleGalleryClick} -->
     <Collage
         gap="10px"
         maxColumnWidth={300}
