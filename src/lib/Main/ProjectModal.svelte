@@ -135,7 +135,7 @@
                         on:mousedown|preventDefault={beginDrag}
                     >
                         {#each project.showcase as reel, i}
-                            <div class="reel relative" on:click={() => selectReel(i)} on:keydown>
+                            <div class="reel relative {i==selectedReel?'selected':''}" on:click={() => selectReel(i)} on:keydown>
                                 {#if reel?.yt}
                                     <img class="media" src="https://img.youtube.com/vi/{reel.yt}/0.jpg" alt={reel?.caption ?? ""}>
                                     <div class="flex absolute top-0 left-0 w-full h-full justify-center items-center z-10 select-none">
@@ -312,6 +312,11 @@
         user-select: none;
         cursor: pointer;
     }
+    .visuals .reelsBox .reels .reel.selected {
+        border: 1px solid var(--red);
+        border-radius: 0.3em;
+    }
+
     .media {
         width: 100%;
         height: 100%;

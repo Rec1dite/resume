@@ -68,7 +68,6 @@
 
     section {
         background-image: url("../../assets/pattern2.png");
-        image-rendering: pixelated;
         background-size: 0.8% auto;
         box-shadow: inset 0 3px 20px rgba(0, 0, 0, 0.4);
         margin: 5em 0px;
