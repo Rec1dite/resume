@@ -42,7 +42,7 @@
 </script>
 
 <script lang="ts">
-    import { faClose, faDownload, faFile, faHome, faPlay, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
+    import { faClose, faDownload, faFile, faHandMiddleFinger, faHome, faPlay, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
     import Fa from "svelte-fa";
     import { getContext, onMount } from "svelte";
     import type { Writable } from "svelte/store";
@@ -250,7 +250,7 @@
     @media only screen and (max-width: 960px) {
         .project {
             grid-template-columns: unset;
-            grid-template-rows: 1fr 1.618033fr;
+            grid-template-rows: 1.618033fr 1fr;
         }
     }
     .closeButton {
@@ -267,6 +267,7 @@
         grid-template-rows: 1fr 5rem;
         padding: 1em;
         overflow: hidden;
+        box-shadow: 0 2px 12px #00000080;
     }
     .visuals .showing {
         display: block;
@@ -337,6 +338,7 @@
 
     .text {
         padding: 2.6em 2em 2em 1em;
+        overflow-y: auto;
     }
     .text div {
         display: inline-block;
