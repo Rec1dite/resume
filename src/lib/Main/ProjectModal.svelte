@@ -18,6 +18,7 @@
     export type ProjectData = {
         title: string;
         desc: string;
+        priority?: number; // lower no. placed higher in list
         thumbnailImg?: string; // img/vid URL
         githubRepo?: string;
 
@@ -43,7 +44,7 @@
 <script lang="ts">
     import { faClose, faDownload, faFile, faHome, faPlay, type IconDefinition } from "@fortawesome/free-solid-svg-icons";
     import Fa from "svelte-fa";
-    import { getContext } from "svelte";
+    import { getContext, onMount } from "svelte";
     import type { Writable } from "svelte/store";
     import MediaQuery from "./utils/MediaQuery.svelte";
     import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -51,6 +52,12 @@
 
     const modalStore = getContext<Writable<ModalData>>("modalStore");
     $: project = $modalStore.project;
+    $: onOpen($modalStore);
+
+    function onOpen(modalData: ModalData) {
+        // Reset props
+        selectedReel = 0;
+    }
 
     function hide() {
         modalStore.update((store) => {

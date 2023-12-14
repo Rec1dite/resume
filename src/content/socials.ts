@@ -20,6 +20,6 @@ export const socials = [
     },
     {
         "icon": faEnvelope,
-        "link": "mail:rec1dite@gmail.com"
+        "link": "mailto:rec1dite@gmail.com"
     }
 ]

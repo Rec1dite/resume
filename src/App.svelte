@@ -12,11 +12,27 @@
   import { writable } from "svelte/store";
 
   import Banner from "./lib/Banner.svelte";
-  import { setContext } from 'svelte';
+  import { onMount, setContext } from 'svelte';
   import ProjectModal, { type ModalData } from './lib/Main/ProjectModal.svelte';
+  import { projects } from './content/projects';
 
   const modalStore = writable<ModalData>({ enabled: false, project: null });
   setContext('modalStore', modalStore);
+
+  onMount(() => {
+    const pathParts = window.location.pathname.split("/").filter(part => part.trim() !== "" && !part.startsWith("#"));
+    if (pathParts.length > 1) {
+      const projectId = pathParts[1];
+      console.log("Project ID", projectId);
+      if (projects[projectId] !== undefined) {
+        modalStore.update((store) => {
+            store.enabled = true;
+            store.project = projects[projectId];
+            return store;
+        });
+      }
+    }
+  });
 
 </script>
 

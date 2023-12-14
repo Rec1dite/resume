@@ -45,6 +45,7 @@ export const skills: { [key: string]: Skill[]; } = {
   ],
   services: [
     { name: "Firebase", devicon: "firebase-plain" },
+    { name: "Google APIs", devicon: "google-plain" },
     { name: "Heroku", devicon: "heroku-plain" },
     { name: "Vercel", fa: faServer },
   ]
