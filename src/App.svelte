@@ -2,45 +2,46 @@
   // Skeleton theme
   // import '@skeletonlabs/skeleton/themes/theme-crimson.css';
   // Custom Skeleton theme
-  import './themes/main.postcss'
+  import "./themes/main.postcss";
 
   // Skeleton required styles
-  import '@skeletonlabs/skeleton/styles/skeleton.css';
+  import "@skeletonlabs/skeleton/styles/skeleton.css";
   // Application's global stylesheet;
 
-  import './app.postcss';
+  import "./app.postcss";
   import { writable } from "svelte/store";
 
   import Banner from "./lib/Banner.svelte";
-  import { onMount, setContext } from 'svelte';
-  import ProjectModal, { type ModalData } from './lib/Main/ProjectModal.svelte';
-  import { projects } from './content/projects';
+  import { onMount, setContext } from "svelte";
+  import ProjectModal, { type ModalData } from "./lib/Main/ProjectModal.svelte";
+  import { projects } from "./content/projects";
 
   const modalStore = writable<ModalData>({ enabled: false, project: null });
-  setContext('modalStore', modalStore);
+  setContext("modalStore", modalStore);
+
+  function renavHash() {
+    const projectId = window.location.hash.slice(1);
+    if (projectId === "" || projects[projectId] == null) {
+      // Not linking to a project
+      modalStore.set({ enabled: false, project: null });
+      return;
+    }
+
+    modalStore.set({ enabled: true, project: projects[projectId] });
+  }
 
   onMount(() => {
-    const pathParts = window.location.pathname.split("/").filter(part => part.trim() !== "" && !part.startsWith("#"));
-    if (pathParts.length > 1) {
-      const projectId = pathParts[1];
-      console.log("Project ID", projectId);
-      if (projects[projectId] !== undefined) {
-        modalStore.update((store) => {
-            store.enabled = true;
-            store.project = projects[projectId];
-            return store;
-        });
-      }
-    }
+    renavHash();
   });
-
 </script>
+
+<svelte:window on:hashchange={renavHash} />
 
 <main>
   <Banner />
 
   {#if $modalStore}
-  <ProjectModal />
+    <ProjectModal />
   {/if}
 </main>
 

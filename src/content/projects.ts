@@ -24,6 +24,9 @@ import delirium_screenshot2 from "../content/projects/delirium/screenshot2.jpg";
 import delirium_screenshot3 from "../content/projects/delirium/screenshot3.jpg";
 import cobwebs_thumb from "../content/projects/cobwebs/thumb.png";
 
+// IMPORTANT: Make sure there are no keys that clash with <section /> id's in the page
+//           (e.g. "about", "projects", "skills", "contact")
+//           Both systems are linked via #hashes in the URL
 export const projects: { [key: string]: ProjectData } = {
   "blix": {
     title: "Blix",
